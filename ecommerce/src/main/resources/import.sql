@@ -1,5 +1,89 @@
-insert into categoria (nome, descricao) values ('Informática', 'Produtos de Informática');
-insert into categoria (nome, descricao) values ('Livros', 'Livros Técnicos');
-insert into categoria (nome, descricao) values ('Eletrônicos', 'Aparelhos Eletrônicos');
+INSERT INTO categoria (nome, descricao)
+VALUES ('Informática', 'Produtos de Informática');
 
-insert into produto (nome, descricao, preco, estoque, categoria_id) values ('Código Limpo', 'Livro do Autor Robert C. Martin', 100.00, 20, 2);
+INSERT INTO categoria (nome, descricao)
+VALUES ('Livros', 'Livros Técnicos');
+
+INSERT INTO categoria (nome, descricao)
+VALUES ('Eletrônicos', 'Aparelhos Eletrônicos');
+
+INSERT INTO categoria (nome, descricao)
+VALUES ('Moda', 'Roupas e Vestimentas');
+
+INSERT INTO categoria (nome, descricao)
+VALUES ('Videogame', 'Jogos e Consoles');
+
+INSERT INTO produto (nome, descricao, preco, estoque, categoria_id)
+VALUES ('Razer Basilisk V3', 'Mouse Gamer', 285.81, 14, 1);
+
+INSERT INTO produto (nome, descricao, preco, estoque, categoria_id)
+VALUES ('Código Limpo', 'Livro do Autor Robert C. Martin', 100.00, 20, 2);
+
+INSERT INTO produto (nome, descricao, preco, estoque, categoria_id)
+VALUES ('JBL Partybox Club 120', 'Caixa de Som', 1919.00, 8, 3);
+
+INSERT INTO produto (nome, descricao, preco, estoque, categoria_id)
+VALUES ('Nike NFL Los Angeles Rams Therma', 'Moletom C/ Capuz Masculino', 265.99, 10, 4);
+
+INSERT INTO produto (nome, descricao, preco, estoque, categoria_id)
+VALUES ('PlayStation®5 Slim Digital', 'Console PlayStation', 4184.06, 25, 5);
+
+INSERT INTO cliente (id, nome, email, telefone)
+VALUES ('234532', 'Guilherme', 'guilherme@gmail.com', '14998384277');
+
+INSERT INTO cliente (id, nome, email, telefone)
+VALUES ('234533', 'Lucas', 'lucas@gmail.com', '14991234567');
+
+INSERT INTO cliente (id, nome, email, telefone)
+VALUES ('234534', 'Gabriel', 'gabriel@gmail.com', '14992345678');
+
+INSERT INTO cliente (id, nome, email, telefone)
+VALUES ('234535', 'Matheus', 'matheus@gmail.com', '14993456789');
+
+INSERT INTO cliente (id, nome, email, telefone)
+VALUES ('234536', 'Rafael', 'rafael@gmail.com', '14994567890');
+
+INSERT INTO pedido (id, cliente_id)
+VALUES ('100001', '234532');
+
+INSERT INTO pedido (id, cliente_id)
+VALUES ('100002', '234533');
+
+INSERT INTO pedido (id, cliente_id)
+VALUES ('100003', '234534');
+
+INSERT INTO pedido (id, cliente_id)
+VALUES ('100004', '234535');
+
+INSERT INTO pedido (id, cliente_id)
+VALUES ('100005', '234536');
+
+INSERT INTO item_pedido (id, quantidade, valor_unitario, pedido_id, produto_id)
+VALUES ('200001', 2, 285.81, '100001', 1);
+
+INSERT INTO item_pedido (id, quantidade, valor_unitario, pedido_id, produto_id)
+VALUES ('200002', 1, 100.00, '100002', 2);
+
+INSERT INTO item_pedido (id, quantidade, valor_unitario, pedido_id, produto_id)
+VALUES ('200003', 1, 1919.00, '100003', 3);
+
+INSERT INTO item_pedido (id, quantidade, valor_unitario, pedido_id, produto_id)
+VALUES ('200004', 1, 265.99, '100004', 4);
+
+INSERT INTO item_pedido (id, quantidade, valor_unitario, pedido_id, produto_id)
+VALUES ('200005', 1, 4184.06, '100005', 5);
+
+INSERT INTO pagamento (id, valor, data, status, tipo, pedido_id)
+VALUES ('300001', 571.62, '2026-09-01', 'APROVADO', 'CARTAO_CREDITO', '100001');
+
+INSERT INTO pagamento (id, valor, data, status, tipo, pedido_id)
+VALUES ('300002', 100.00, '2026-09-01', 'APROVADO', 'PIX', '100002');
+
+INSERT INTO pagamento (id, valor, data, status, tipo, pedido_id)
+VALUES ('300003', 1919.00, '2026-09-02', 'PENDENTE', 'BOLETO', '100003');
+
+INSERT INTO pagamento (id, valor, data, status, tipo, pedido_id)
+VALUES ('300004', 265.99, '2026-09-02', 'APROVADO', 'CARTAO_DEBITO', '100004');
+
+INSERT INTO pagamento (id, valor, data, status, tipo, pedido_id)
+VALUES ('300005', 4184.06, '2026-09-03', 'APROVADO', 'PIX', '100005');
