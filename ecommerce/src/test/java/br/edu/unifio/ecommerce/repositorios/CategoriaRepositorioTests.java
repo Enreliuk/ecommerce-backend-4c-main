@@ -1,0 +1,28 @@
+package br.edu.unifio.ecommerce.repositorios;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.math.BigDecimal;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.edu.unifio.ecommerce.entidades.Categoria;
+
+public class CategoriaRepositorioTests {
+    @Autowired 
+    private CategoriaRepositorio categoriaRepositorio;
+
+    @Test
+    public void deveSalvarUmaCategoriaNova () {
+        var categoria = new Categoria ();
+        categoria.setNome("Cosméticos");
+        categoria.setDescricao("Perfumes e loções");
+
+        categoriaRepositorio.save(categoria);
+
+        assertNotNull(categoria.getId());
+        assertEquals(Short.valueOf(6));
+    }
+
+}
