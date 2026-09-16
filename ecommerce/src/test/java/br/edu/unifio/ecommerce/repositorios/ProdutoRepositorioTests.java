@@ -1,6 +1,8 @@
 package br.edu.unifio.ecommerce.repositorios;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.math.BigDecimal;
@@ -32,9 +34,7 @@ public class ProdutoRepositorioTests {
         var categoria = categoriaRepositorio.findById(Short.parseShort("1")).orElseThrow();
         produto.setCategoria(categoria);
 
-        System.out.println("ID Antes: " + produto.getId());
         produtoRepositorio.save(produto);
-        System.out.println("ID Depois: " + produto.getId());
 
         assertNotNull(produto.getId());
         assertEquals(6, produto.getId());
@@ -52,9 +52,9 @@ public class ProdutoRepositorioTests {
 public void deveBuscarTodosOsProdutos () {
 	List<Produto> produto = produtoRepositorio.findAll(Sort.by("nome"));
 
-    assertEquals(6, produto.size());
+    assertEquals(7, produto.size());
     assertEquals("Código Limpo", produto.get(0).getNome());
-    assertEquals("Razer Basilisk V3", produto.get(5).getNome());
+    assertEquals("PlayStation®5 Slim Digital", produto.get(5).getNome());
     }
 
     @Test
@@ -69,6 +69,28 @@ public void deveBuscarTodosOsProdutos () {
         produto.setCategoria(categoria);
 
         produtoRepositorio.save(produto);
+
+        assertTrue(produtoRepositorio.existsById(produto.getId()));
         produtoRepositorio.deleteById(produto.getId());
+        assertFalse(produtoRepositorio.existsById(produto.getId()));
+    }
+
+    @Test
+    public void deveAtualizarONomeDeUmProduto () {
+        var produto = new Produto ();
+        produto.setNome("Nome Teste");
+        produto.setDescricao("Descrição Teste");
+        produto.setPreco(new BigDecimal("67.67"));
+        produto.setEstoque(Short.parseShort("67"));
+        
+        var categoria = categoriaRepositorio.findById(Short.parseShort("1")).orElseThrow();
+        produto.setCategoria(categoria);
+
+        produtoRepositorio.save(produto);
+
+        produto.setNome("Outro Nome Teste");
+        produtoRepositorio.save(produto);
+
+        assertEquals("Outro Nome Teste", produtoRepositorio.findById(produto.getId()).orElseThrow().getNome());
     }
 }
